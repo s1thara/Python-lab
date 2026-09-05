@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 
 type Pyodide = { runPythonAsync: (code: string) => Promise<unknown> };
 
@@ -62,7 +63,7 @@ _buffer.getvalue()
     } finally { setRunning(false); }
   };
 
-  const onEditorKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const onEditorKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.shiftKey && e.key === "Enter") {
       e.preventDefault();
       void runCode();
